@@ -1,6 +1,6 @@
 {
 	"name": "tdl-wrapper",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Wrapper for TDLib",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
@@ -13,19 +13,14 @@
 		"lint": "tslint -p tsconfig.json",
 		"prepare": "npm run build",
 		"postinstall": "node lib/install.js",
-		"version": "npm run format && git add -A src"
+		"version": "npm run format && git add -A"
 	},
-	"files": [
-		"lib/**/*"
-	],
+	"files": [ "lib/**/*" ],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/d-andrii/tdl-wrapper.git"
 	},
-	"keywords": [
-		"TDLib",
-		"telegram"
-	],
+	"keywords": [ "TDLib", "telegram" ],
 	"author": "dandrii",
 	"license": "MIT",
 	"bugs": {
