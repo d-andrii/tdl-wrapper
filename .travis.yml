@@ -12,8 +12,9 @@ cache:
   directories:
     - node_modules
 
-script:
+install:
   - npm install
+script:
   - npx typedoc --out out src/index.ts
 deploy:
   provider: pages
