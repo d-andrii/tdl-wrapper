@@ -1,9 +1,10 @@
 import { Client as tdlClient } from 'tdl';
 import { Chat, Message } from 'tdl/types/tdlib';
+import { join } from 'path';
 
 export class Client extends tdlClient {
 	constructor(apiId: number, apiHash: string) {
-		super({ apiId, apiHash });
+		super({ apiId, apiHash, binaryPath: join(__dirname, '../') });
 	}
 	/**
 	 * Sends message to existing chat.
