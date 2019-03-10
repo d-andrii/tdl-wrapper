@@ -9,7 +9,6 @@
 		"start": "tsc; node lib/index.js",
 		"build": "tsc",
 		"watch": "tsc -w",
-		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
 		"lint": "tslint -p tsconfig.json",
 		"prepare": "npm run build",
 		"postinstall": "node lib/install.js",
