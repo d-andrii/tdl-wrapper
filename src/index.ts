@@ -4,7 +4,19 @@ import { join } from 'path';
 
 export class Client extends tdlClient {
 	constructor(apiId: number, apiHash: string) {
-		super({ apiId, apiHash, binaryPath: join(__dirname, '../') });
+		let platform = '';
+		switch (process.platform) {
+			case 'win32':
+				platform = 'tdjson';
+				break;
+			case 'darwin':
+			case 'linux':
+				platform = 'libtdjson';
+				break;
+			default:
+				throw new Error('Platform is not supported.');
+		}
+		super({ apiId, apiHash, binaryPath: join(__dirname, '../', platform) });
 	}
 	/**
 	 * Sends message to existing chat.
