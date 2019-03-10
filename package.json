@@ -1,0 +1,48 @@
+{
+	"name": "tdl-wrapper",
+	"version": "1.0.2",
+	"description": "Wrapper for TDLib",
+	"main": "lib/index.js",
+	"types": "lib/index.d.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "tsc; node lib/index.js",
+		"build": "tsc",
+		"watch": "tsc -w",
+		"format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+		"lint": "tslint -p tsconfig.json",
+		"prepare": "npm run build",
+		"postinstall": "node lib/install.js",
+		"version": "npm run format && git add -A src"
+	},
+	"files": [
+		"lib/**/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/d-andrii/tdl-wrapper.git"
+	},
+	"keywords": [
+		"TDLib",
+		"telegram"
+	],
+	"author": "dandrii",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/d-andrii/tdl-wrapper/issues"
+	},
+	"homepage": "https://github.com/d-andrii/tdl-wrapper#readme",
+	"devDependencies": {
+		"@types/node": "^11.11.0",
+		"@types/unzipper": "^0.9.1",
+		"prettier": "^1.16.4",
+		"tslint": "^5.13.1",
+		"tslint-config-prettier": "^1.18.0",
+		"typescript": "^3.3.3333"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"tdl": "^5.2.0",
+		"unzipper": "^0.9.11"
+	}
+}

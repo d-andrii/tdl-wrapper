@@ -1,0 +1,42 @@
+{
+	"lintOptions": {
+		"typeCheck": true
+	},
+	"extends": [
+		"tslint:recommended",
+		"tslint-config-prettier"
+	],
+	"rules": {
+		"linebreak-style": [
+			true,
+			"LF"
+		],
+		"trailing-comma": false,
+		"indent": [
+			true,
+			"tabs"
+		],
+		"max-line-length": false,
+		"quotemark": [
+			true,
+			"single"
+		],
+		"no-console": false,
+		"ordered-imports": false,
+		"object-curly-spacing": [
+			true,
+			"always",
+			{
+				"arraysInObjects": false,
+				"objectsInObjects": false
+			}
+		],
+		"object-literal-sort-keys": false,
+		"curly": false,
+		"variable-name": false,
+		"max-classes-per-file": false
+	},
+	"rulesDirectory": [
+		"node_modules/tslint-eslint-rules/dist/rules"
+	]
+}
