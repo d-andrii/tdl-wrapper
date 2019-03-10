@@ -18,6 +18,7 @@ install:
   - npm install
 script:
   - npx typedoc --out out src/index.ts
+  - echo "include:\n  - "_*_.html"\n  - "_*_.*.html"" >> out/config.yml
 deploy:
   provider: pages
   skip_cleanup: true
