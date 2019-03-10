@@ -4,6 +4,8 @@ node_js:
 dist: trusty
 sudo: false
 
+if: tag IS present
+
 branches:
   only:
   - master
@@ -26,4 +28,5 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: out/
   on:
+    branch: master
     tags: true
