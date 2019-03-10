@@ -3,19 +3,7 @@ import { Chat, Message } from 'tdl/types/tdlib';
 
 export class Client extends tdlClient {
 	constructor(apiId: number, apiHash: string) {
-		let binaryPath = '';
-		switch (process.platform) {
-			case 'win32':
-				binaryPath = `${__dirname}/tdjson.dll`;
-				break;
-			case 'linux':
-				binaryPath = `${__dirname}/libtdjson.so`;
-			case 'darwin':
-				binaryPath = `${__dirname}/libtdjson.dylib`;
-			default:
-				break;
-		}
-		super({ apiId, apiHash, binaryPath });
+		super({ apiId, apiHash });
 	}
 	/**
 	 * Sends message to existing chat.
