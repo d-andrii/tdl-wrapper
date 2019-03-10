@@ -3,7 +3,19 @@ import { Chat, Message } from 'tdl/types/tdlib';
 
 export class Client extends tdlClient {
 	constructor(apiId: number, apiHash: string) {
-		super({ apiId, apiHash });
+		let binaryPath = '';
+		switch (process.platform) {
+			case 'win32':
+				binaryPath = `${__dirname}/tdjson.dll`;
+				break;
+			case 'linux':
+				binaryPath = `${__dirname}/libtdjson.so`;
+			case 'darwin':
+				binaryPath = `${__dirname}/libtdjson.dylib`;
+			default:
+				break;
+		}
+		super({ apiId, apiHash, binaryPath });
 	}
 	/**
 	 * Sends message to existing chat.
@@ -23,9 +35,9 @@ export class Client extends tdlClient {
 				offset_chat_id: 0,
 				limit: 100
 			})
-				.then(async res => {
+				.then(async (res) => {
 					const chats = await this.getChats(...res.chat_ids);
-					const found = chats.filter(el => {
+					const found = chats.filter((el) => {
 						return el.title === chat;
 					});
 					chatId = found[0] ? found[0].id : undefined;
@@ -53,7 +65,7 @@ export class Client extends tdlClient {
 	 */
 	public async getChats(...ids: number[]): Promise<Chat[]> {
 		const promises: Array<Promise<Chat>> = [];
-		ids.forEach(id => {
+		ids.forEach((id) => {
 			promises.push(
 				this.invoke({
 					_: 'getChat',

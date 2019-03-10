@@ -13,19 +13,15 @@
 		"lint": "tslint -p tsconfig.json",
 		"prepare": "npm run build",
 		"postinstall": "node lib/install.js",
-		"version": "npm run format && git add -A"
+		"version": "git add -A . && git commit",
+		"postversion": "git push && git push --tags"
 	},
-	"files": [
-		"lib/**/*"
-	],
+	"files": [ "lib/**/*" ],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/d-andrii/tdl-wrapper.git"
 	},
-	"keywords": [
-		"TDLib",
-		"telegram"
-	],
+	"keywords": [ "TDLib", "telegram" ],
 	"author": "dandrii",
 	"license": "MIT",
 	"bugs": {
