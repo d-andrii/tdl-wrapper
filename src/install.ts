@@ -20,5 +20,5 @@ axios({
 	url: `https://github.com/ForNeVeR/tdlib.native/releases/latest/download/tdlib.${platform}.zip`,
 	responseType: 'stream'
 }).then((res) => {
-	res.data.pipe(Extract({ path: process.cwd() }));
+	res.data.pipe(Extract({ path: __dirname.replace(/node_modules.*/, '') }));
 });
