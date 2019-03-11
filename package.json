@@ -1,6 +1,6 @@
 {
 	"name": "tdl-wrapper",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"description": "Wrapper for TDLib",
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
@@ -16,12 +16,17 @@
 		"version": "git add -A src",
 		"postversion": "git push && git push --tags"
 	},
-	"files": [ "lib/**/*" ],
+	"files": [
+		"lib/**/*"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/d-andrii/tdl-wrapper.git"
 	},
-	"keywords": [ "TDLib", "telegram" ],
+	"keywords": [
+		"TDLib",
+		"telegram"
+	],
 	"author": "dandrii",
 	"license": "MIT",
 	"bugs": {
