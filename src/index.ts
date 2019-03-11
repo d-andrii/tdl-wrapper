@@ -1,9 +1,10 @@
 import { Client as tdlClient } from 'tdl';
-import { Chat, Message } from 'tdl/types/tdlib';
+import { Chat, Message, Users } from 'tdl/types/tdlib';
 import { join } from 'path';
+import { IUser } from './types/user.type';
 
 export class Client extends tdlClient {
-	constructor(apiId: number, apiHash: string) {
+	constructor (apiId: number, apiHash: string) {
 		let platform = '';
 		switch (process.platform) {
 			case 'win32':
@@ -25,7 +26,7 @@ export class Client extends tdlClient {
 	 * @param { string } text Text to send.
 	 * @returns { Promise<Message> } Promise resolves Message.
 	 */
-	public async sendText(chat: string | number, text: string): Promise<Message> {
+	public async sendText (chat: string | number, text: string): Promise<Message> {
 		let chatId: number | undefined;
 		if (typeof chat === 'number') {
 			chatId = chat;
@@ -62,9 +63,9 @@ export class Client extends tdlClient {
 	 * Returns full info of passed chats.
 	 * @async
 	 * @param { number[] } ids chat IDs.
-	 * @returns { Promise<Chat> } Promise resolves Chat[].
+	 * @returns { Promise<Chat[]> } Promise resolves Chat[].
 	 */
-	public async getChats(...ids: number[]): Promise<Chat[]> {
+	public async getChats (...ids: number[]): Promise<Chat[]> {
 		const promises: Array<Promise<Chat>> = [];
 		ids.forEach((id) => {
 			promises.push(
@@ -75,5 +76,45 @@ export class Client extends tdlClient {
 			);
 		});
 		return await Promise.all(promises);
+	}
+
+	/**
+	 * Return list of users.
+	 * @async
+	 * @param { boolean } contacts If true returns contact list, else returns list of chats.
+	 * @returns { Promise<IUser[]> } List of users.
+	 */
+	public async getUsers (contacts: boolean): Promise<IUser[]> {
+		const users: IUser[] = [];
+		if (contacts) {
+			const res = await this.invoke({
+				_: 'getContacts'
+			});
+			for (const user_id of res.user_ids) {
+				const user = await this.invoke({
+					_: 'getUser',
+					user_id
+				});
+				users.push({ name: (user.first_name + user.last_name).trim(), id: user.id });
+			}
+			console.log(users);
+			return users;
+		} else {
+			const res = await this.invoke({
+				_: 'getChats',
+				offset_order: '9223372036854775807',
+				offset_chat_id: 0,
+				limit: 100
+			});
+			for (const user_id of res.chat_ids) {
+				const user = await this.invoke({
+					_: 'getUser',
+					user_id
+				});
+				users.push({ name: (user.first_name + user.last_name).trim(), id: user.id });
+			}
+			console.log(users);
+			return users;
+		}
 	}
 }
