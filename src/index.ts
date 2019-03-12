@@ -1,5 +1,5 @@
 import { Client as tdlClient } from 'tdl';
-import { Chat, Message, Users } from 'tdl/types/tdlib';
+import { Chat, Message } from 'tdl/types/tdlib';
 import { join } from 'path';
 import { IUser } from './types/user.type';
 
@@ -8,8 +8,6 @@ export class Client extends tdlClient {
 		let platform = '';
 		switch (process.platform) {
 			case 'win32':
-				platform = 'tdjson';
-				break;
 			case 'darwin':
 			case 'linux':
 				platform = 'libtdjson';

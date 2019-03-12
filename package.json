@@ -5,7 +5,7 @@
 	"main": "lib/index.js",
 	"types": "lib/index.d.ts",
 	"scripts": {
-		"test": "sudo node ./node_modules/ts-node/dist/bin.js __tests__/basic.ts",
+		"test": "node ./node_modules/ts-node/dist/bin.js __tests__/basic.ts",
 		"start": "tsc; node lib/index.js",
 		"build": "tsc",
 		"watch": "tsc -w",
@@ -45,7 +45,6 @@
 	},
 	"dependencies": {
 		"axios": "^0.18.0",
-		"tdl": "^5.2.0",
-		"unzipper": "^0.9.11"
+		"tdl": "^5.2.0"
 	}
 }
