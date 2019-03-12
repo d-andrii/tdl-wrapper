@@ -106,12 +106,12 @@ export class Client extends tdlClient {
 				offset_chat_id: 0,
 				limit: 100
 			});
-			for (const user_id of res.chat_ids) {
-				const user = await this.invoke({
-					_: 'getUser',
-					user_id
+			for (const chat_id of res.chat_ids) {
+				const chat = await this.invoke({
+					_: 'getChat',
+					chat_id
 				});
-				users.push({ name: (user.first_name + user.last_name).trim(), id: user.id });
+				users.push({ name: chat.title.trim(), id: chat.id });
 			}
 			console.log(users);
 			return users;
